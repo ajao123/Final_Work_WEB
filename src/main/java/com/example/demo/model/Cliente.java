@@ -1,12 +1,16 @@
 package com.example.demo.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="cliente")
@@ -17,20 +21,26 @@ public class Cliente {
 	private Long id;
 	private Integer cpf;
 	private String name;
-	private LocalDate dateBirth;
+
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
+	private Date datebirth;
+	
 	private String endereco;
 	private String email;
+	private String senha;
 	
 	public Cliente() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(String name, Integer cpf, LocalDate dateBirth, String endereco, String email) {
+	public Cliente(String name, Integer cpf, Date datebirth, String endereco, String email, String senha) {
 		this.name = name;
 		this.cpf = cpf;
-		this.dateBirth = dateBirth;
+		this.datebirth = datebirth;
 		this.endereco = endereco;
 		this.email = email;
+		this.senha =senha;
 	}
 
 	public String getName() {
@@ -49,12 +59,12 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public LocalDate getDateBirth() {
-		return dateBirth;
+	public Date getDatebirth() {
+		return datebirth;
 	}
 
-	public void setDateBirth(LocalDate dateBirth) {
-		this.dateBirth = dateBirth;
+	public void setDatebirth(Date datebirth) {
+		this.datebirth = datebirth;
 	}
 
 	public String getEndereco() {
@@ -80,6 +90,13 @@ public class Cliente {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	
 }

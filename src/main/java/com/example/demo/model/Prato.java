@@ -13,16 +13,14 @@ public class Prato {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String image;
 	private Double price;
 	
 	public Prato() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Prato(String name, String image, Double price) {
+	public Prato(String name, Double price) {
 		this.name = name;
-		this.image = image;
 		this.price = price;
 	}
 
@@ -40,14 +38,6 @@ public class Prato {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
 	}
 
 	public Double getPrice() {

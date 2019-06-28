@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+</head>
+<body>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each = "Cliente : ${listaDeClientes}">
+      <td th:text="${Cliente.id}"></td>
+      <td th:text="${Cliente.name}"></td>
+      <td><a class="btn btn-primary" th:href="@{/restaurante/cliente/login/vizualizarcompras/{id}(id=${Cliente.id})}">Compras Realizadas</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">Id Cliente</th>
+       <th scope="col">Id Prato</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Preço</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr th:each = "Pedido : ${listaDePedidos}">
+      <td th:text="${Pedido.id}"></td>
+      <td th:text="${Pedido.idcliente}"></td>
+      <td th:text="${Pedido.idprato}"></td>
+      <td th:text="${Pedido.name}"></td>
+      <td th:text="${Pedido.price}"></td>
+      <td> <img width="200" height="200" th:src="@{'/images/'+${Pedido.name}+.jpg}"/> </td>
+      <td><a class="btn btn-primary" th:href="@{/restaurante/cliente/login/pedido/{id}(id=${Pedido.id})}">Selecionar</a></td>
+	  	
+    </tr>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">Id Cliente</th>
+       <th scope="col">Id Prato</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Preço</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr th:each = "Pedido : ${listaDePedidosDesejados}">
+      <td th:text="${Pedido.id}"></td>
+      <td th:text="${Pedido.idcliente}"></td>
+      <td th:text="${Pedido.idprato}"></td>
+      <td th:text="${Pedido.name}"></td>
+      <td th:text="${Pedido.price}"></td>
+      <td> <img width="200" height="200" th:src="@{'/images/'+${Pedido.name}+.jpg}"/> </td>
+<td><a class="btn btn-danger" th:href="@{/restaurante/cliente/login/rmpedido/{id}(id=${Pedido.id})}">Excluir</a></td>
+		
+    </tr>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Resultado</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr th:each = "Compra : ${listaDeCompras}">
+      <td th:text="${Compra.id}"></td>
+      <td th:text="${Compra.result}"></td>
+<td><a class="btn btn-danger" th:href="@{/restaurante/cliente/login/finalizarcompra/{id}(id=${Compra.id})}">Finalizar Compra</a></td>
+		
+    </tr>
+  </tbody>
+</table>
+
+
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

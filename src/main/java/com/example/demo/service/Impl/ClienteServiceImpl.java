@@ -1,14 +1,16 @@
 package com.example.demo.service.Impl;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Cliente;
 import com.example.demo.repository.ClienteRepository;
-import com.example.service.ClienteService;
+import com.example.demo.service.ClienteService;
 
 @Service
 public class ClienteServiceImpl implements ClienteService{
@@ -27,13 +29,22 @@ public class ClienteServiceImpl implements ClienteService{
 	}
 
 	@Override
-	public Cliente buscarPeloId(Long id) {
-		return clienteRepository.getOne(id);
+	public Optional<Cliente> buscarPeloId(Long id) {
+		return clienteRepository.findById(id);
 	}
 
 	@Override
-	public Page<Cliente> listarClientes(Pageable pageable) {
-		return new PageImpl<>(clienteRepository.findAll(), pageable, pageable.getPageSize());
+	public List<Cliente> listarClientes() {
+		return clienteRepository.findAll();
 	}
 
+	@Override
+	public Cliente atualizarCliente(Cliente cliente, Long id) {
+		Optional<Cliente> clienteSave = clienteRepository.findById(id);
+    	if(!clienteSave.isPresent()) {
+    		throw new EmptyResultDataAccessException(1);
+    	}
+    	BeanUtils.copyProperties(cliente, clienteSave.get(), "id");
+    	return clienteRepository.save(clienteSave.get());
+	}
 }

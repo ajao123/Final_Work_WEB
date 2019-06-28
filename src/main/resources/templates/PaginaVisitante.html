@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<form action ="/cliente/registro">
+	<input type="submit" value="Registrar">
+</form>
+<br>
+<form action ="/restaurante/inicial">
+	<input type="submit" value="Voltar">
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col">Selecionar Prato</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr th:each = "Prato : ${listaDePratos}">
+      <td th:text="${Prato.name}"></td>
+      <td th:text="${Prato.price}"></td>
+      <td> <img width="200" height="200" th:src="@{'/images/'+${Prato.name}+.jpg}"/> </td>
+            <td><a class="btn btn-primary" th:href="@{/cliente/registro}">Selecionar</a></td>
+      
+    </tr>
+  </tbody>
+</table>
+
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

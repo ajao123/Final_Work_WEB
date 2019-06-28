@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action ="/restaurante/gerente/telaprincipal">
+	<input type="submit" value="Tela Principal">
+	</form>
+	<form action ="/restaurante/gerente/salvarprato" method="POST" th:object="${prato}" 
+	enctype="multipart/form-data">
+	<input type="hidden" th:field="*{id}">
+	Nome<br><input type="text" th:field="*{name}"><br><br>
+	Imagem<br><input type="file" name="imagem"><br><br>
+	Preco<br><input type="text"th:field="*{price}"></input><br><br>
+	<input type="submit" value="Cadastrar">
+	
+	</form>
+</body>
+</html>

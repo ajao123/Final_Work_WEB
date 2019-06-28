@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+</head>
+<body>
+	<form action ="/restaurante/gerente/telaprincipal">
+	<input type="submit" value="Tela Principal">
+	</form>
+	<form action ="/restaurante/gerente/registroprato">
+	<input type="submit" value="Tela De Registro">
+	</form>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Preco</th>
+      <th scope="col">Imagem do prato</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr th:each = "Prato : ${listaDePratos}">
+      <td th:text="${Prato.id}"></td>
+      <td th:text="${Prato.name}"></td>
+      <td th:text="${Prato.price}"></td>
+      <td> <img width="200" height="200" th:src="@{'/images/'+${Prato.name}+.jpg}"/> </td>
+      <td><a class="btn btn-danger" th:href="@{/prato/excluir/{id}(id=${Prato.id})}">Excluir</a></td>
+      <td><a class="btn btn-primary" th:href="@{/prato/atualizar/{id}(id=${Prato.id})}">Atualizar</a></td>
+      
+    </tr>
+  </tbody>
+</table>
+
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,6 +1,0 @@
-CREATE TABLE prato(
-	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    image varchar(200),
-    price DOUBLE
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+
+
+</head>
+<body>
+	<form action ="/restaurante/cliente/salvarcliente" method="POST" th:object="${cliente}">
+	<input type="hidden" th:field="*{id}">
+	
+	Nome<br><input type="text" th:field="*{name}"><br><br>
+	Cpf<br><input type="text" th:field="*{cpf}" name="cpf" id="cpf"><br><br>
+	Data de nascimento<br><input type="text" name="data" id="data" th:field="*{datebirth}"></input><br><br>
+	Endereco<br><input type="text" th:field="*{endereco}"><br><br>
+	Email<br><input type="text" th:field="*{email}"><br><br>
+	Senha<br><input type="password" th:field="*{senha}"><br><br>
+	<input type="submit" value="Cadastrar">
+	
+	</form>
+	<br>
+	<form action ="/restaurante/inicial">
+	<input type="submit" value="Voltar">
+	</form>
+	<script>
+	$(document).ready(function(){
+		$("#data").mask("00/00/0000");
+	});
+	
+	$(document).ready(function(){
+		$("#cpf").mask("000.000.000-00");
+	});
+</script>
+
+</body>
+</html>
